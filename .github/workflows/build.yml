@@ -22,7 +22,7 @@ jobs:
 
     env:
       Solution_Name: NowPlayingForMisskey.sln                         # Replace with your solution name, i.e. App1.sln.
-      Appx_package_Dir: $(Build.SourcesDirectory)\NowPlayingForMisskey\Packages\
+      Appx_package_Dir: ${{ github.workspace }}\NowPlayingForMisskey\Packages\
 
     steps:
     - name: Checkout
