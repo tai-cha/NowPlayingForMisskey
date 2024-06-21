@@ -82,7 +82,7 @@ jobs:
 
     # List files in the package directory to check if MSIX was created
     - name: List package directory contents
-      run: dir $env:Appx_Package_Dir
+      run: dir /s /b /a-d $env:Appx_Package_Dir
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload MSIX package
