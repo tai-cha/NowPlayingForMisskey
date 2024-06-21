@@ -87,11 +87,11 @@ jobs:
     # Create ZIP archive
     - name: Create ZIP archive
       run: |
-        Compress-Archive -Path "$env:Appx_Package_Dir\*" -DestinationPath "$env:Appx_Package_Dir\NowPlayingForMisskey_${{ matrix.platform }}.zip"
+        Compress-Archive -Path "${{ env.Appx_Package_Dir }}\*" -DestinationPath "${{ env.Appx_Package_Dir }}\NowPlayingForMisskey_${{ matrix.platform }}.zip"
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload MSIX package
       uses: actions/upload-artifact@v4
       with:
         name: MSIX Package
-        path: $env:Appx_Package_Dir
+        path: ${{ env.Appx_Package_Dir }}
