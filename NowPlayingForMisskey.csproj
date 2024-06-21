@@ -24,6 +24,8 @@
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundle>Never</AppxBundle>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <RepositoryUrl>https://github.com/tai-cha/NowPlayingForMisskey.git</RepositoryUrl>
+    <PackageLicenseFile>LICENCE</PackageLicenseFile>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="ResourceDictionary.xaml" />
@@ -66,6 +68,10 @@
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240607001" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="LICENCE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Update="README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
