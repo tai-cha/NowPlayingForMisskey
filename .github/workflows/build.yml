@@ -73,13 +73,16 @@ jobs:
       env:
         Appx_Bundle: Never
         Appx_Package_Build_Mode: SideloadOnly
-        Appx_Package_Dir: Packages\
         Configuration: ${{ matrix.configuration }}
         Platform: ${{ matrix.platform }}
 
     # Remove the pfx
     - name: Remove the pfx
       run: Remove-Item -path GitHubActionsWorkflow.pfx
+
+    # List files in the package directory to check if MSIX was created
+    - name: List package directory contents
+      run: dir $env:Appx_Package_Dir
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload MSIX package
