@@ -55,15 +55,16 @@ namespace NowPlayingForMisskey
         }
         private AppWindow GetCurrentAppWindow()
         {
-            //Window‚Ìƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+            //Windowã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
             IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
-            //hwnd‚ÅWindowId‚ğæ“¾‚·‚é
+            //hwndã§WindowIdã‚’å–å¾—ã™ã‚‹
             WindowId winId = Win32Interop.GetWindowIdFromWindow(hwnd);
-            //WindowId‚ÅAppWindow object‚ğæ“¾‚µ‚Ä•Ô‚·
+            //WindowIdã§AppWindow objectã‚’å–å¾—ã—ã¦è¿”ã™
             return AppWindow.GetFromWindowId(winId);
         }
 
-        private void RegisterQuit() {
+        private void RegisterQuit()
+        {
             AppWindow thisAppWindow = GetCurrentAppWindow();
             if (thisAppWindow != null)
             {
@@ -72,7 +73,7 @@ namespace NowPlayingForMisskey
                     OnQuit();
                 };
             }
-            
+
         }
 
         private void OnQuit()
@@ -89,7 +90,7 @@ namespace NowPlayingForMisskey
                 Marshal.ReleaseComObject(_iTunesApp);
                 _iTunesApp = null;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 
@@ -110,7 +111,7 @@ namespace NowPlayingForMisskey
         private void OnTrackChanged(object iTrack)
         {
             Debug.WriteLine("TrackChangeCalled");
-            if ( _currentTrack != null )
+            if (_currentTrack != null)
             {
                 Marshal.ReleaseComObject(_currentTrack);
             }
@@ -125,12 +126,12 @@ namespace NowPlayingForMisskey
 
                 if (_currentTrack != null)
                 {
-                    // Ä¶’†‚Ì‹Èî•ñ‚ğæ“¾
+                    // å†ç”Ÿä¸­ã®æ›²æƒ…å ±ã‚’å–å¾—
                     string trackName = _currentTrack.Name;
                     string artistName = _currentTrack.Artist;
-                    string albumName  = _currentTrack.Album;
+                    string albumName = _currentTrack.Album;
 
-                    // UI‚É•\¦
+                    // UIã«è¡¨ç¤º
                     TrackNameTextBlock.Text = $"Track: {trackName}";
                     ArtistNameTextBlock.Text = $"Artist: {artistName}";
                     AlbumNameTextBlock.Text = $"Album: {albumName}";
@@ -169,7 +170,8 @@ namespace NowPlayingForMisskey
         {
             if (_artworkFile != null)
             {
-                try {
+                try
+                {
                     var dataPackage = new DataPackage();
                     dataPackage.SetBitmap(RandomAccessStreamReference.CreateFromFile(_artworkFile));
                     Clipboard.SetContent(dataPackage);
@@ -184,10 +186,11 @@ namespace NowPlayingForMisskey
             }
         }
 
-        private void ShowClipboardNotification(string imagePath) {
+        private void ShowClipboardNotification(string imagePath)
+        {
             var notificationBuilder = new AppNotificationBuilder()
-                .AddText("ƒA[ƒgƒ[ƒN‚ªƒNƒŠƒbƒvƒ{[ƒh‚ÉƒRƒs[‚³‚ê‚Ü‚µ‚½B")
-                .AddText("ƒm[ƒg‚É“\‚è•t‚¯‚é‚±‚Æ‚Å“Y•t‚Å‚«‚Ü‚·B", new AppNotificationTextProperties().SetMaxLines(2))
+                .AddText("ã‚¢ãƒ¼ãƒˆãƒ¯ãƒ¼ã‚¯ãŒã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ã‚³ãƒ”ãƒ¼ã•ã‚Œã¾ã—ãŸã€‚")
+                .AddText("ãƒãƒ¼ãƒˆã«è²¼ã‚Šä»˜ã‘ã‚‹ã“ã¨ã§æ·»ä»˜ã§ãã¾ã™ã€‚", new AppNotificationTextProperties().SetMaxLines(2))
                 .SetHeroImage(new Uri(imagePath));
 
             var notificationManager = AppNotificationManager.Default;
@@ -206,8 +209,6 @@ namespace NowPlayingForMisskey
                 string albumName = _currentTrack.Album;
                 string shareText = HttpUtility.UrlEncode($"Track: {trackName}\nArtist: {artistName}\nAlbum: {albumName}\n#NowPlaying");
                 _ = Windows.System.Launcher.LaunchUriAsync(new Uri($"https://misskey-hub.net/share?text={shareText}&manualInstance=mi.taichan.site"));
-
-
             }
         }
     }
