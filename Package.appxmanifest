@@ -10,7 +10,7 @@
   <Identity
     Name="176d0094-f570-495e-8922-d8359ad00643"
     Publisher="CN=taichan"
-    Version="1.0.0.0" />
+    Version="0.1.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="176d0094-f570-495e-8922-d8359ad00643" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
