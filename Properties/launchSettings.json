@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "NowPlayingForMisskey (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "NowPlayingForMisskey (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
