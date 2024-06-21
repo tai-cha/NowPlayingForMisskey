@@ -39,10 +39,14 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v2
 
-    # Install iTunes using winget
-    - name: Install iTunes using winget
+    # Download and Install iTunes
+    - name: Download iTunes
       run: |
-        winget install -e --id Apple.iTunes
+        Invoke-WebRequest -Uri "https://www.apple.com/itunes/download/win64" -OutFile "iTunes64Setup.exe" -MaximumRedirection 10
+
+    - name: Install iTunes
+      run: |
+        Start-Process -FilePath "iTunes64Setup.exe" -ArgumentList "/quiet" -Wait
 
     # Register iTunes COM DLL
     - name: Register iTunes COM DLL
